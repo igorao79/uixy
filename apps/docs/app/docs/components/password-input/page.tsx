@@ -1,11 +1,11 @@
 "use client";
 
-import { PasswordInput } from "uixy";
+import { PasswordInput } from "uivix";
 import { ComponentPreview } from "@/components/ComponentPreview";
 import { PropsTable } from "@/components/PropsTable";
 import { CodeBlock } from "@/components/CodeBlock";
 
-const importCode = `import { PasswordInput } from "uixy";`;
+const importCode = `import { PasswordInput } from "uivix";`;
 
 export default function PasswordInputPage() {
   return (

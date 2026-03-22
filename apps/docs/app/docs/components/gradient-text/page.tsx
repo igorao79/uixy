@@ -1,13 +1,13 @@
 "use client";
 
 import { useState } from "react";
-import { GradientText } from "uixy";
+import { GradientText } from "uivix";
 import { ComponentPreview } from "@/components/ComponentPreview";
 import { PropsTable } from "@/components/PropsTable";
 import { CodeBlock } from "@/components/CodeBlock";
 import { Playground, SliderControl } from "@/components/Playground";
 
-const importCode = `import { GradientText } from "uixy";`;
+const importCode = `import { GradientText } from "uivix";`;
 
 const presets = [
   { label: "Violet-Pink", value: "from-violet-500 via-pink-500 to-indigo-500" },

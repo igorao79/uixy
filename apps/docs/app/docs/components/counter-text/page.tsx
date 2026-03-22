@@ -1,13 +1,13 @@
 "use client";
 
 import { useState } from "react";
-import { CounterText } from "uixy";
+import { CounterText } from "uivix";
 import { ComponentPreview } from "@/components/ComponentPreview";
 import { PropsTable } from "@/components/PropsTable";
 import { CodeBlock } from "@/components/CodeBlock";
 import { SliderControl } from "@/components/Playground";
 
-const importCode = `import { CounterText } from "uixy";`;
+const importCode = `import { CounterText } from "uivix";`;
 
 export default function CounterTextPage() {
   const [target, setTarget] = useState(9999);

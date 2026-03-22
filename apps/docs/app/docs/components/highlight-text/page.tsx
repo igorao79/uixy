@@ -1,12 +1,12 @@
 "use client";
 
 import { useState } from "react";
-import { HighlightText } from "uixy";
+import { HighlightText } from "uivix";
 import { PropsTable } from "@/components/PropsTable";
 import { CodeBlock } from "@/components/CodeBlock";
 import { SliderControl } from "@/components/Playground";
 
-const importCode = `import { HighlightText } from "uixy";`;
+const importCode = `import { HighlightText } from "uivix";`;
 
 const variants = [
   { name: "marker", label: "Marker" },

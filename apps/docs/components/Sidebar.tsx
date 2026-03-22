@@ -52,9 +52,35 @@ const categories: NavCategory[] = [
     ],
   },
   {
-    name: "Typography",
+    name: "Backgrounds",
     items: [
-      { name: "Label", href: "/docs/components/label" },
+      { name: "Particle", href: "/docs/components/particle-background" },
+      { name: "Aurora", href: "/docs/components/aurora-background" },
+      { name: "Grid", href: "/docs/components/grid-background" },
+      { name: "Starfield", href: "/docs/components/starfield-background" },
+      { name: "Waves", href: "/docs/components/wave-background" },
+      { name: "Gradient Mesh", href: "/docs/components/gradient-mesh-background" },
+      { name: "Matrix Rain", href: "/docs/components/matrix-rain-background" },
+      { name: "Bokeh", href: "/docs/components/bokeh-background" },
+      { name: "Pixel Art", href: "/docs/components/pixel-background" },
+      { name: "Ripple", href: "/docs/components/ripple-background" },
+      { name: "Dot Pattern", href: "/docs/components/dot-pattern-background" },
+      { name: "Retro Grid", href: "/docs/components/retro-grid-background" },
+      { name: "Meteors", href: "/docs/components/meteor-background" },
+      { name: "Beams", href: "/docs/components/beam-background" },
+    ],
+  },
+  {
+    name: "Other",
+    items: [
+      { name: "Badge", href: "/docs/components/badge" },
+      { name: "Tooltip", href: "/docs/components/tooltip" },
+      { name: "Toggle", href: "/docs/components/toggle" },
+      { name: "Separator", href: "/docs/components/separator" },
+      { name: "Skeleton", href: "/docs/components/skeleton" },
+      { name: "Progress", href: "/docs/components/progress" },
+      { name: "Avatar", href: "/docs/components/avatar" },
+      { name: "Marquee", href: "/docs/components/marquee" },
     ],
   },
 ];
@@ -144,6 +170,7 @@ function CategoryGroup({ category }: { category: NavCategory }) {
 }
 
 export function Sidebar() {
+  const pathname = usePathname();
   return (
     <aside className="w-64 shrink-0 border-r border-zinc-800 h-screen sticky top-0 overflow-y-auto p-6">
       <Link href="/" className="flex items-center gap-2 mb-8">
@@ -160,8 +187,12 @@ export function Sidebar() {
           <ul className="space-y-1">
             <li>
               <Link
-                href="/docs/components/button"
-                className="block text-sm text-zinc-400 hover:text-zinc-100 transition-colors py-1 px-3"
+                href="/docs/installation"
+                className={`block text-sm transition-colors py-1 px-3 rounded-md ${
+                  pathname === "/docs/installation"
+                    ? "bg-violet-600/20 text-violet-400 border-l-2 border-violet-400"
+                    : "text-zinc-400 hover:text-zinc-100 hover:bg-zinc-800/50"
+                }`}
               >
                 Installation
               </Link>

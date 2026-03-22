@@ -1,12 +1,12 @@
 "use client";
 
 import { useState } from "react";
-import { Input, Label } from "uixy";
+import { Input, Label } from "uivix";
 import { ComponentPreview } from "@/components/ComponentPreview";
 import { PropsTable } from "@/components/PropsTable";
 import { CodeBlock } from "@/components/CodeBlock";
 
-const importCode = `import { Input } from "uixy";`;
+const importCode = `import { Input } from "uivix";`;
 
 export default function InputPage() {
   const [email, setEmail] = useState("");

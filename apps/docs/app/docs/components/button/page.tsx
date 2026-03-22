@@ -1,13 +1,12 @@
 "use client";
 
 import { useState } from "react";
-import { Button } from "uixy";
+import { Button } from "uivix";
 import { ComponentPreview } from "@/components/ComponentPreview";
 import { PropsTable } from "@/components/PropsTable";
 import { CodeBlock } from "@/components/CodeBlock";
 
-const installCode = `npm install uixy`;
-const importCode = `import { Button } from "uixy";`;
+const importCode = `import { Button } from "uivix";`;
 
 const HeartIcon = () => (
   <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
@@ -61,9 +60,7 @@ export default function ButtonPage() {
         A versatile button with 9 variants, icons, loading state, and pill shape.
       </p>
 
-      <h2 className="text-xl font-semibold mb-4">Installation</h2>
-      <CodeBlock code={installCode} language="bash" />
-      <div className="mb-8" />
+      <h2 className="text-xl font-semibold mb-4">Import</h2>
       <CodeBlock code={importCode} />
       <div className="mb-8" />
 

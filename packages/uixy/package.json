@@ -1,6 +1,6 @@
 {
-  "name": "uixy",
-  "version": "0.1.0",
+  "name": "@igorao79/uivix",
+  "version": "0.1.1",
   "description": "A modern UI component library for React + Tailwind CSS",
   "main": "./dist/index.js",
   "module": "./dist/index.mjs",
@@ -44,6 +44,6 @@
     "ui",
     "components",
     "tailwindcss",
-    "uixy"
+    "uivix"
   ]
 }

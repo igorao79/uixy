@@ -1,11 +1,11 @@
 "use client";
 
 import { useState } from "react";
-import { MediaText } from "uixy";
+import { MediaText } from "uivix";
 import { PropsTable } from "@/components/PropsTable";
 import { CodeBlock } from "@/components/CodeBlock";
 
-const importCode = `import { MediaText } from "uixy";`;
+const importCode = `import { MediaText } from "uivix";`;
 
 const imagePresets = [
   {

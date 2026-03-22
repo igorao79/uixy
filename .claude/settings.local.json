@@ -28,7 +28,26 @@
       "Bash(cmd.exe)",
       "Bash(curl.exe -s -o /dev/null -w \"%{http_code}\" http://localhost:3000/)",
       "Bash(curl.exe -s -o /dev/null -w \"%{http_code}\" http://localhost:3000/docs/components/button)",
-      "Bash(curl.exe -s -o /dev/null -w \"%{http_code}\" http://localhost:3000/docs/components/highlight-text)"
+      "Bash(curl.exe -s -o /dev/null -w \"%{http_code}\" http://localhost:3000/docs/components/highlight-text)",
+      "mcp__4c2e9e81-8adf-4446-80a1-d0ee6d57a842__query-docs",
+      "Bash(curl.exe -s -o /dev/null -w \"%{http_code}\" http://localhost:3000/docs/components/badge)",
+      "Bash(curl.exe -s -o /dev/null -w \"%{http_code}\" http://localhost:3000/docs/components/tooltip)",
+      "Bash(curl.exe -s -o /dev/null -w \"%{http_code}\" http://localhost:3000/docs/components/toggle)",
+      "Bash(curl.exe -s -o /dev/null -w \"%{http_code}\" http://localhost:3000/docs/components/separator)",
+      "Bash(curl.exe -s -o /dev/null -w \"%{http_code}\" http://localhost:3000/docs/components/skeleton)",
+      "Bash(curl.exe -s -o /dev/null -w \"%{http_code}\" http://localhost:3000/docs/components/avatar)",
+      "Bash(curl.exe -s http://localhost:3000/docs/components/toggle)",
+      "Bash(curl.exe -v http://localhost:3000/)",
+      "Bash(grep -rl 'from \"\"\"\"uixy\"\"\"\"' --include=\"*.tsx\" --include=\"*.ts\" .)",
+      "Bash(while read:*)",
+      "Bash(do sed:*)",
+      "Bash(echo \"fixed: $f\")",
+      "Bash(done)",
+      "Bash(npm install:*)",
+      "Bash(npm publish:*)",
+      "Bash(npm config:*)",
+      "Bash(npm profile:*)",
+      "Bash(npm logout:*)"
     ]
   }
 }

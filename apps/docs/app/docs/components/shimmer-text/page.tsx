@@ -1,12 +1,12 @@
 "use client";
 
 import { useState } from "react";
-import { ShimmerText } from "uixy";
+import { ShimmerText } from "uivix";
 import { PropsTable } from "@/components/PropsTable";
 import { CodeBlock } from "@/components/CodeBlock";
 import { SliderControl } from "@/components/Playground";
 
-const importCode = `import { ShimmerText } from "uixy";`;
+const importCode = `import { ShimmerText } from "uivix";`;
 
 const colorPresets = [
   { label: "Silver", base: "rgba(255,255,255,0.4)", shimmer: "rgba(255,255,255,0.9)" },

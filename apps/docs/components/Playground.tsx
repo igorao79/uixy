@@ -55,8 +55,11 @@ interface SliderControlProps {
 
 export function SliderControl({ label, value, onChange, min, max, step = 1, suffix = "" }: SliderControlProps) {
   return (
-    <div className="flex items-center gap-3">
-      <label className="text-xs font-medium text-zinc-500 w-20 shrink-0">{label}</label>
+    <div>
+      <div className="flex items-center justify-between mb-1">
+        <label className="text-xs font-medium text-zinc-500">{label}</label>
+        <span className="text-xs text-zinc-400 tabular-nums">{value}{suffix}</span>
+      </div>
       <input
         type="range"
         min={min}
@@ -64,9 +67,8 @@ export function SliderControl({ label, value, onChange, min, max, step = 1, suff
         step={step}
         value={value}
         onChange={(e) => onChange(Number(e.target.value))}
-        className="h-1 rounded-full appearance-none bg-zinc-700 accent-violet-500 cursor-pointer flex-1 max-w-[200px]"
+        className="w-full h-1.5 rounded-full appearance-none bg-zinc-700 accent-violet-500 cursor-pointer"
       />
-      <span className="text-xs text-zinc-400 tabular-nums w-16 text-right shrink-0">{value}{suffix}</span>
     </div>
   );
 }
