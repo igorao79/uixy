@@ -17,23 +17,23 @@ function injectCardStyles() {
     }
     .uixy-card-spotlight::before {
       content:''; position:absolute; inset:0;
-      background: radial-gradient(600px circle at var(--uixy-mx) var(--uixy-my), rgba(139,92,246,0.15), transparent 40%);
+      background: radial-gradient(600px circle at var(--uixy-mx) var(--uixy-my), rgba(var(--uixy-card-rgb,139,92,246),0.15), transparent 40%);
       opacity:0; transition:opacity .3s; pointer-events:none; z-index:0;
     }
     .uixy-card-spotlight:hover::before { opacity:1; }
 
     /* ── neon ── */
     .uixy-card-neon {
-      box-shadow: 0 0 5px var(--uixy-neon, rgba(139,92,246,0.4)),
-                  0 0 20px var(--uixy-neon, rgba(139,92,246,0.2)),
-                  inset 0 0 20px var(--uixy-neon, rgba(139,92,246,0.05));
+      box-shadow: 0 0 5px rgba(var(--uixy-card-rgb,139,92,246),0.4),
+                  0 0 20px rgba(var(--uixy-card-rgb,139,92,246),0.2),
+                  inset 0 0 20px rgba(var(--uixy-card-rgb,139,92,246),0.05);
       transition: box-shadow 0.3s ease;
     }
     .uixy-card-neon:hover {
-      box-shadow: 0 0 10px var(--uixy-neon, rgba(139,92,246,0.6)),
-                  0 0 40px var(--uixy-neon, rgba(139,92,246,0.3)),
-                  0 0 80px var(--uixy-neon, rgba(139,92,246,0.15)),
-                  inset 0 0 30px var(--uixy-neon, rgba(139,92,246,0.08));
+      box-shadow: 0 0 10px rgba(var(--uixy-card-rgb,139,92,246),0.6),
+                  0 0 40px rgba(var(--uixy-card-rgb,139,92,246),0.3),
+                  0 0 80px rgba(var(--uixy-card-rgb,139,92,246),0.15),
+                  inset 0 0 30px rgba(var(--uixy-card-rgb,139,92,246),0.08);
     }
 
     /* ── tilt ── */
@@ -53,7 +53,7 @@ function injectCardStyles() {
     }
     .uixy-card-animated-border::before {
       content:''; position:absolute; inset:-2px;
-      background: conic-gradient(from var(--uixy-angle,0deg), #8b5cf6, #3b82f6, #06b6d4, #8b5cf6);
+      background: conic-gradient(from var(--uixy-angle,0deg), var(--uixy-card-c,#8b5cf6), var(--uixy-card-c2,#3b82f6), var(--uixy-card-c3,#06b6d4), var(--uixy-card-c,#8b5cf6));
       animation: uixy-border-spin 3s linear infinite;
       border-radius: inherit;
       z-index: -1;
@@ -104,10 +104,12 @@ export interface CardProps extends React.HTMLAttributes<HTMLDivElement> {
     | "animated-border"
     | "noise"
     | "lifted";
+  /** Accent color for spotlight/neon/animated-border variants (hex) */
+  color?: string;
 }
 
 export const Card = forwardRef<HTMLDivElement, CardProps>(
-  ({ variant = "default", className, children, onMouseMove, onMouseLeave, ...props }, ref) => {
+  ({ variant = "default", color, className, children, onMouseMove, onMouseLeave, style, ...props }, ref) => {
     const innerRef = useRef<HTMLDivElement>(null);
     const cardRef = (ref as React.RefObject<HTMLDivElement>) || innerRef;
 
@@ -159,7 +161,7 @@ export const Card = forwardRef<HTMLDivElement, CardProps>(
       gradient:         `${base} border border-zinc-800 bg-gradient-to-br from-violet-950/40 via-zinc-900 to-cyan-950/30`,
       glass:            `${base} border border-white/10 bg-white/5 backdrop-blur-lg`,
       spotlight:        `${base} border border-zinc-800 bg-zinc-900 uixy-card-spotlight`,
-      neon:             `${base} border border-violet-500/30 bg-zinc-900 uixy-card-neon`,
+      neon:             `${base} border bg-zinc-900 uixy-card-neon`,
       tilt:             `${base} border border-zinc-800 bg-zinc-900 uixy-card-tilt cursor-pointer`,
       "animated-border": `${base} bg-zinc-900 uixy-card-animated-border`,
       noise:            `${base} border border-zinc-800 bg-zinc-900 uixy-card-noise`,
@@ -168,12 +170,28 @@ export const Card = forwardRef<HTMLDivElement, CardProps>(
 
     const needsZWrap = variant === "spotlight" || variant === "noise" || variant === "animated-border";
 
+    // Build color CSS vars
+    const c = color || "#8b5cf6";
+    const h = c.replace("#", "");
+    const rgb = `${parseInt(h.substring(0, 2), 16)},${parseInt(h.substring(2, 4), 16)},${parseInt(h.substring(4, 6), 16)}`;
+    const needsColorVars = ["spotlight", "neon", "animated-border"].includes(variant);
+    const colorVars: React.CSSProperties = needsColorVars
+      ? {
+          "--uixy-card-rgb": rgb,
+          "--uixy-card-c": c,
+          "--uixy-card-c2": color ? c : "#3b82f6",
+          "--uixy-card-c3": color ? c : "#06b6d4",
+          ...(variant === "neon" ? { borderColor: `rgba(${rgb}, 0.3)` } : {}),
+        } as React.CSSProperties
+      : {};
+
     return (
       <div
         ref={cardRef}
         className={cn(variants[variant], className)}
         onMouseMove={handleMouseMove}
         onMouseLeave={handleMouseLeave}
+        style={{ ...colorVars, ...style }}
         {...props}
       >
         {needsZWrap ? (

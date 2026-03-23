@@ -13,6 +13,8 @@ export interface TooltipProps {
   variant?: TooltipVariant;
   delay?: number;
   arrow?: boolean;
+  /** Accent color for gradient/neon variants (hex) */
+  color?: string;
   children: React.ReactNode;
   className?: string;
 }
@@ -23,6 +25,7 @@ export const Tooltip: React.FC<TooltipProps> = ({
   variant = "default",
   delay = 300,
   arrow = true,
+  color,
   children,
   className,
 }) => {
@@ -136,7 +139,12 @@ export const Tooltip: React.FC<TooltipProps> = ({
           variants[variant],
           className
         )}
-        style={{ ...positionStyle[side], ...slideVars[side] }}
+        style={{
+          ...positionStyle[side],
+          ...slideVars[side],
+          ...(color && variant === "gradient" ? { background: color, borderColor: "transparent" } : {}),
+          ...(color && variant === "neon" ? { color, borderColor: `${color}80`, boxShadow: `0 0 12px ${color}50` } : {}),
+        }}
         data-state={state}
         role="tooltip"
       >

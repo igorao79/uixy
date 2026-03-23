@@ -1,5 +1,9 @@
-import React, { useState, useId } from "react";
+"use client";
+
+import React, { useState, useId, useEffect } from "react";
 import { cn } from "../../utils/cn";
+
+let inputGlowStyleInjected = false;
 
 export interface InputProps
   extends React.InputHTMLAttributes<HTMLInputElement> {
@@ -16,6 +20,8 @@ export interface InputProps
   leftIcon?: React.ReactNode;
   /** Icon element to show on the right side */
   rightIcon?: React.ReactNode;
+  /** Accent color for glow variant focus (hex) */
+  color?: string;
 }
 
 const variantStyles: Record<string, string> = {
@@ -30,7 +36,7 @@ const variantStyles: Record<string, string> = {
   ghost:
     "border border-transparent bg-transparent hover:bg-zinc-100 dark:hover:bg-zinc-800 focus-visible:bg-zinc-100 dark:focus-visible:bg-zinc-800",
   glow:
-    "border border-zinc-300 bg-transparent dark:border-zinc-700 dark:bg-transparent focus-visible:ring-0 focus-visible:ring-offset-0 focus-visible:border-violet-500 focus-visible:shadow-[0_0_10px_rgba(139,92,246,0.5),0_0_20px_rgba(139,92,246,0.2)] dark:focus-visible:border-violet-400 dark:focus-visible:shadow-[0_0_10px_rgba(167,139,250,0.5),0_0_20px_rgba(167,139,250,0.2)]",
+    "border border-zinc-300 bg-transparent dark:border-zinc-700 dark:bg-transparent focus-visible:ring-0 focus-visible:ring-offset-0 uixy-input-glow",
 };
 
 const sizeStyles: Record<NonNullable<InputProps["inputSize"]>, string> = {
@@ -83,16 +89,33 @@ export const Input = React.forwardRef<HTMLInputElement, InputProps>(
       wrapperClassName,
       leftIcon,
       rightIcon,
+      color,
       id,
       onChange,
       onFocus,
       onBlur,
       defaultValue,
       value: controlledValue,
+      style,
       ...props
     },
     ref
   ) => {
+    useEffect(() => {
+      if (!inputGlowStyleInjected) {
+        inputGlowStyleInjected = true;
+        const s = document.createElement("style");
+        s.textContent = `
+          .uixy-input-glow:focus {
+            border-color: var(--uixy-input-glow-c, #8b5cf6) !important;
+            box-shadow: 0 0 10px rgba(var(--uixy-input-glow-rgb, 139,92,246), 0.5),
+                        0 0 20px rgba(var(--uixy-input-glow-rgb, 139,92,246), 0.2) !important;
+          }
+        `;
+        document.head.appendChild(s);
+      }
+    }, []);
+
     // Floating variant
     if (variant === "floating") {
       return (
@@ -170,6 +193,16 @@ export const Input = React.forwardRef<HTMLInputElement, InputProps>(
         onBlur={onBlur}
         defaultValue={defaultValue}
         value={controlledValue}
+        style={{
+          ...(variant === "glow" && color ? {
+            "--uixy-input-glow-c": color,
+            "--uixy-input-glow-rgb": (() => {
+              const h = color.replace("#", "");
+              return `${parseInt(h.substring(0, 2), 16)},${parseInt(h.substring(2, 4), 16)},${parseInt(h.substring(4, 6), 16)}`;
+            })(),
+          } as React.CSSProperties : {}),
+          ...style,
+        }}
         {...props}
       />
     );

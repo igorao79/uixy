@@ -19,10 +19,12 @@ export interface BadgeProps extends React.HTMLAttributes<HTMLSpanElement> {
   pill?: boolean;
   /** Icon before text */
   icon?: React.ReactNode;
+  /** Accent color override for default/glow/gradient/soft variants (hex) */
+  color?: string;
 }
 
 export const Badge = forwardRef<HTMLSpanElement, BadgeProps>(
-  ({ variant = "default", size = "md", dot, dotColor, pill = true, icon, className, children, ...props }, ref) => {
+  ({ variant = "default", size = "md", dot, dotColor, pill = true, icon, color, className, children, style, ...props }, ref) => {
     useEffect(() => {
       if (!badgeStyleInjected) {
         badgeStyleInjected = true;
@@ -70,6 +72,21 @@ export const Badge = forwardRef<HTMLSpanElement, BadgeProps>(
       info: "bg-blue-400", premium: "bg-amber-400", new: "bg-emerald-400", beta: "bg-indigo-400",
     };
 
+    // Custom color override for accent variants
+    const colorOverride: React.CSSProperties = {};
+    if (color && ["default", "glow", "gradient", "soft"].includes(variant)) {
+      const h = color.replace("#", "");
+      const r = parseInt(h.substring(0, 2), 16);
+      const g = parseInt(h.substring(2, 4), 16);
+      const b = parseInt(h.substring(4, 6), 16);
+      colorOverride.backgroundColor = `rgba(${r},${g},${b},0.15)`;
+      colorOverride.color = color;
+      colorOverride.borderColor = `rgba(${r},${g},${b},0.2)`;
+      if (variant === "glow") {
+        colorOverride.boxShadow = `0 0 8px rgba(${r},${g},${b},0.3)`;
+      }
+    }
+
     const shimmerStyle: React.CSSProperties = variant === "shimmer" ? {
       backgroundImage: "linear-gradient(90deg, transparent 25%, rgba(255,255,255,0.08) 50%, transparent 75%)",
       backgroundSize: "200% 100%",
@@ -86,7 +103,7 @@ export const Badge = forwardRef<HTMLSpanElement, BadgeProps>(
           sizes[size],
           className
         )}
-        style={shimmerStyle}
+        style={{ ...shimmerStyle, ...colorOverride, ...style }}
         {...props}
       >
         {dot && (

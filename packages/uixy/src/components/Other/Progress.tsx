@@ -56,7 +56,15 @@ export const Progress = forwardRef<HTMLDivElement, ProgressProps>(
     };
 
     if (variant === "gradient") {
-      barCss.background = "linear-gradient(90deg, #8b5cf6, #3b82f6, #06b6d4)";
+      const c = color || "#8b5cf6";
+      const h = c.replace("#", "");
+      const r = parseInt(h.substring(0, 2), 16);
+      const g = parseInt(h.substring(2, 4), 16);
+      const b = parseInt(h.substring(4, 6), 16);
+      // Generate a 3-stop gradient from the color by shifting hue
+      const c2 = `rgb(${Math.max(0, r - 80)}, ${Math.min(255, g + 50)}, ${Math.min(255, b + 40)})`;
+      const c3 = `rgb(${Math.max(0, r - 130)}, ${Math.min(255, g + 100)}, ${Math.min(255, b + 80)})`;
+      barCss.background = `linear-gradient(90deg, ${c}, ${c2}, ${c3})`;
     } else if (variant === "striped") {
       barCss.backgroundColor = (barStyles.striped as string);
       barCss.backgroundImage = "linear-gradient(45deg, rgba(255,255,255,0.1) 25%, transparent 25%, transparent 50%, rgba(255,255,255,0.1) 50%, rgba(255,255,255,0.1) 75%, transparent 75%, transparent)";
