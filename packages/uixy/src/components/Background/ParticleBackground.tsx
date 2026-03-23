@@ -144,8 +144,9 @@ export const ParticleBackground: React.FC<ParticleBackgroundProps> = ({
     const onMouseLeave = () => {
       mouseRef.current = { x: -9999, y: -9999 };
     };
-    canvas.addEventListener("mousemove", onMouse);
-    canvas.addEventListener("mouseleave", onMouseLeave);
+    // Listen on window so pointer-events:none on canvas doesn't block mouse tracking
+    window.addEventListener("mousemove", onMouse);
+    window.addEventListener("mouseleave", onMouseLeave);
 
     const getColor = (shade: number, alpha: number) => {
       const v = 40;
@@ -281,8 +282,8 @@ export const ParticleBackground: React.FC<ParticleBackgroundProps> = ({
     return () => {
       cancelAnimationFrame(rafRef.current);
       window.removeEventListener("resize", resize);
-      canvas.removeEventListener("mousemove", onMouse);
-      canvas.removeEventListener("mouseleave", onMouseLeave);
+      window.removeEventListener("mousemove", onMouse);
+      window.removeEventListener("mouseleave", onMouseLeave);
     };
   }, [items, count, connectionDistance, arrows, mouseDistance, color, speed, fontSize, imageSize, lineWidth, maxOpacity, normalize]);
 
