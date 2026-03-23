@@ -36,7 +36,7 @@ export default function CounterTextPage() {
           <CounterText key={key} target={target} duration={duration} decimals={decimals} prefix={prefix} suffix={suffix} className="text-5xl font-bold text-white" triggerOnView={false} />
         </div>
         <div className="border-t border-zinc-800 pt-4 space-y-3">
-          <div className="grid grid-cols-3 gap-3">
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
             <div>
               <label className="block text-xs font-medium text-zinc-500 mb-1.5">Target</label>
               <input type="number" value={target} onChange={(e) => { setTarget(Number(e.target.value)); replay(); }} className="w-full h-9 px-3 text-sm rounded-md border border-zinc-700 bg-zinc-800 text-zinc-100 focus:outline-none focus:ring-2 focus:ring-violet-500/50 focus:border-violet-500 transition-colors" />

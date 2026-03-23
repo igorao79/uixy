@@ -50,7 +50,7 @@ export default function MeteorBackgroundPage() {
               ))}
             </div>
           </div>
-          <div className="grid grid-cols-2 gap-x-6 gap-y-3">
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-6 gap-y-3">
             <SliderControl label="Count" value={count} onChange={(v) => { setCount(v); replay(); }} min={5} max={50} />
             <SliderControl label="Angle" value={angle} onChange={(v) => { setAngle(v); replay(); }} min={180} max={270} suffix="deg" />
             <SliderControl label="Tail Length" value={tailLength} onChange={(v) => { setTailLength(v); replay(); }} min={20} max={200} suffix="px" />

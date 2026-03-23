@@ -48,7 +48,7 @@ export default function MatrixRainBackgroundPage() {
               ))}
             </div>
           </div>
-          <div className="grid grid-cols-2 gap-x-6 gap-y-3">
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-6 gap-y-3">
             <SliderControl label="Speed" value={speed} onChange={(v) => { setSpeed(v); replay(); }} min={0.3} max={4} step={0.1} suffix="x" />
             <SliderControl label="Font Size" value={fontSize} onChange={(v) => { setFontSize(v); replay(); }} min={8} max={24} suffix="px" />
           </div>

@@ -68,12 +68,12 @@ export default function HomePage() {
 
       {/* Content */}
       <div className="relative z-10 text-center max-w-2xl">
-        <h1 className="text-6xl font-bold tracking-tight mb-4">
+        <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold tracking-tight mb-4">
           <span className="bg-gradient-to-r from-violet-400 to-indigo-400 bg-clip-text text-transparent">
             UIVIX
           </span>
         </h1>
-        <p className="text-xl text-zinc-300 mb-8">
+        <p className="text-base sm:text-lg md:text-xl text-zinc-300 mb-8 px-2">
           A modern UI component library for React + Tailwind CSS.
           <br />
           Simple. Clean. Ready to use.
@@ -91,7 +91,7 @@ export default function HomePage() {
           </Link>
         </div>
 
-        <div className="mt-16 grid grid-cols-3 gap-8 text-left">
+        <div className="mt-10 sm:mt-16 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 sm:gap-6 md:gap-8 text-left px-2">
           <div className="backdrop-blur-sm bg-white/5 rounded-lg p-4 border border-white/10">
             <h3 className="text-lg font-semibold mb-2 text-zinc-100">Tailwind Native</h3>
             <p className="text-sm text-zinc-400">

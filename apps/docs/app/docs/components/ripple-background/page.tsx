@@ -45,7 +45,7 @@ export default function RippleBackgroundPage() {
               ))}
             </div>
           </div>
-          <div className="grid grid-cols-2 gap-x-6 gap-y-3">
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-6 gap-y-3">
             <SliderControl label="Rings" value={count} onChange={(v) => { setCount(v); replay(); }} min={3} max={12} />
             <SliderControl label="Duration" value={duration} onChange={(v) => { setDuration(v); replay(); }} min={2} max={10} step={0.5} suffix="s" />
           </div>

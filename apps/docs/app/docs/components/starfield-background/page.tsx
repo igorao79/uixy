@@ -66,7 +66,7 @@ export default function StarfieldBackgroundPage() {
               ))}
             </div>
           </div>
-          <div className="grid grid-cols-2 gap-x-6 gap-y-3">
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-6 gap-y-3">
             <SliderControl label="Speed" value={speed} onChange={(v) => { setSpeed(v); replay(); }} min={0.2} max={5} step={0.1} suffix="x" />
             <SliderControl label="Stars" value={count} onChange={(v) => { setCount(v); replay(); }} min={50} max={800} />
           </div>

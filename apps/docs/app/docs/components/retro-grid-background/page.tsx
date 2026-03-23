@@ -48,7 +48,7 @@ export default function RetroGridBackgroundPage() {
               ))}
             </div>
           </div>
-          <div className="grid grid-cols-2 gap-x-6 gap-y-3">
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-6 gap-y-3">
             <SliderControl label="Cell Size" value={cellSize} onChange={(v) => { setCellSize(v); replay(); }} min={20} max={120} suffix="px" />
             <SliderControl label="Speed" value={speed} onChange={(v) => { setSpeed(v); replay(); }} min={0.2} max={4} step={0.1} suffix="x" />
           </div>

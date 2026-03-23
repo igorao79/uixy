@@ -48,7 +48,7 @@ export default function BeamBackgroundPage() {
               ))}
             </div>
           </div>
-          <div className="grid grid-cols-2 gap-x-6 gap-y-3">
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-6 gap-y-3">
             <SliderControl label="Beams" value={count} onChange={(v) => { setCount(v); replay(); }} min={3} max={15} />
             <SliderControl label="Speed" value={speed} onChange={(v) => { setSpeed(v); replay(); }} min={0.3} max={3} step={0.1} suffix="x" />
             <SliderControl label="Opacity" value={opacity} onChange={(v) => { setOpacity(v); replay(); }} min={0.05} max={0.4} step={0.01} />

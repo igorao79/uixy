@@ -69,7 +69,7 @@ export default function AuroraBackgroundPage() {
               ))}
             </div>
           </div>
-          <div className="grid grid-cols-2 gap-x-6 gap-y-3">
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-6 gap-y-3">
             <SliderControl label="Speed" value={speed} onChange={(v) => { setSpeed(v); replay(); }} min={0.2} max={3} step={0.1} suffix="x" />
             <SliderControl label="Blur" value={blur} onChange={(v) => { setBlur(v); replay(); }} min={20} max={200} suffix="px" />
             <SliderControl label="Opacity" value={opacity} onChange={(v) => { setOpacity(v); replay(); }} min={0.1} max={0.8} step={0.05} />

@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 
@@ -169,48 +169,94 @@ function CategoryGroup({ category }: { category: NavCategory }) {
   );
 }
 
-export function Sidebar() {
+function SidebarContent() {
   const pathname = usePathname();
   return (
-    <aside className="w-64 shrink-0 border-r border-zinc-800 h-screen sticky top-0 overflow-y-auto p-6">
-      <Link href="/" className="flex items-center gap-2 mb-8">
-        <span className="text-xl font-bold bg-gradient-to-r from-violet-400 to-indigo-400 bg-clip-text text-transparent">
-          UIVIX
-        </span>
-      </Link>
+    <nav>
+      <div className="mb-6">
+        <h4 className="text-xs font-semibold uppercase tracking-wider text-zinc-500 mb-3">
+          Getting Started
+        </h4>
+        <ul className="space-y-1">
+          <li>
+            <Link
+              href="/docs/installation"
+              className={`block text-sm transition-colors py-1 px-3 rounded-md ${
+                pathname === "/docs/installation"
+                  ? "bg-violet-600/20 text-violet-400 border-l-2 border-violet-400"
+                  : "text-zinc-400 hover:text-zinc-100 hover:bg-zinc-800/50"
+              }`}
+            >
+              Installation
+            </Link>
+          </li>
+        </ul>
+      </div>
 
-      <nav>
-        <div className="mb-6">
-          <h4 className="text-xs font-semibold uppercase tracking-wider text-zinc-500 mb-3">
-            Getting Started
-          </h4>
-          <ul className="space-y-1">
-            <li>
-              <Link
-                href="/docs/installation"
-                className={`block text-sm transition-colors py-1 px-3 rounded-md ${
-                  pathname === "/docs/installation"
-                    ? "bg-violet-600/20 text-violet-400 border-l-2 border-violet-400"
-                    : "text-zinc-400 hover:text-zinc-100 hover:bg-zinc-800/50"
-                }`}
-              >
-                Installation
-              </Link>
-            </li>
-          </ul>
-        </div>
+      <div>
+        <h4 className="text-xs font-semibold uppercase tracking-wider text-zinc-500 mb-3">
+          Components
+        </h4>
+        <ul className="space-y-1">
+          {categories.map((category) => (
+            <CategoryGroup key={category.name} category={category} />
+          ))}
+        </ul>
+      </div>
+    </nav>
+  );
+}
 
-        <div>
-          <h4 className="text-xs font-semibold uppercase tracking-wider text-zinc-500 mb-3">
-            Components
-          </h4>
-          <ul className="space-y-1">
-            {categories.map((category) => (
-              <CategoryGroup key={category.name} category={category} />
-            ))}
-          </ul>
-        </div>
-      </nav>
-    </aside>
+export function Sidebar() {
+  const [open, setOpen] = useState(false);
+  const pathname = usePathname();
+
+  // Close mobile sidebar on route change
+  useEffect(() => {
+    setOpen(false);
+  }, [pathname]);
+
+  return (
+    <>
+      {/* Mobile hamburger button */}
+      <button
+        onClick={() => setOpen(!open)}
+        className="fixed top-4 left-4 z-50 md:hidden p-2 rounded-lg bg-zinc-900 border border-zinc-700 text-zinc-300 hover:text-white transition-colors"
+        aria-label="Toggle menu"
+      >
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2} className="w-5 h-5">
+          {open ? (
+            <path strokeLinecap="round" d="M6 18L18 6M6 6l12 12" />
+          ) : (
+            <path strokeLinecap="round" d="M4 6h16M4 12h16M4 18h16" />
+          )}
+        </svg>
+      </button>
+
+      {/* Mobile overlay */}
+      {open && (
+        <div
+          className="fixed inset-0 bg-black/60 z-30 md:hidden"
+          onClick={() => setOpen(false)}
+        />
+      )}
+
+      {/* Sidebar - desktop: static, mobile: slide-in */}
+      <aside
+        className={`
+          fixed md:sticky top-0 left-0 z-40
+          w-64 shrink-0 border-r border-zinc-800 h-screen overflow-y-auto p-6 bg-zinc-950
+          transition-transform duration-300 ease-in-out
+          ${open ? "translate-x-0" : "-translate-x-full md:translate-x-0"}
+        `}
+      >
+        <Link href="/" className="flex items-center gap-2 mb-8">
+          <span className="text-xl font-bold bg-gradient-to-r from-violet-400 to-indigo-400 bg-clip-text text-transparent">
+            UIVIX
+          </span>
+        </Link>
+        <SidebarContent />
+      </aside>
+    </>
   );
 }

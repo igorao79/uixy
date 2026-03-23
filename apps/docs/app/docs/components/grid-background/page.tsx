@@ -68,7 +68,7 @@ export default function GridBackgroundPage() {
               ))}
             </div>
           </div>
-          <div className="grid grid-cols-2 gap-x-6 gap-y-3">
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-6 gap-y-3">
             <SliderControl label="Cell Size" value={size} onChange={(v) => { setSize(v); replay(); }} min={15} max={80} suffix="px" />
             <SliderControl label="Mask Radius" value={maskRadius} onChange={(v) => { setMaskRadius(v); replay(); }} min={100} max={600} suffix="px" />
           </div>

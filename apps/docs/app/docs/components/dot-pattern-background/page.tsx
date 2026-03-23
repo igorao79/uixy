@@ -42,7 +42,7 @@ export default function DotPatternBackgroundPage() {
               ))}
             </div>
           </div>
-          <div className="grid grid-cols-2 gap-x-6 gap-y-3">
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-6 gap-y-3">
             <SliderControl label="Spacing" value={spacing} onChange={(v) => { setSpacing(v); replay(); }} min={12} max={48} suffix="px" />
             <SliderControl label="Dot Radius" value={radius} onChange={(v) => { setRadius(v); replay(); }} min={0.5} max={4} step={0.1} suffix="px" />
           </div>
