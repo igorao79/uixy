@@ -1,6 +1,15 @@
+const path = require("path");
+
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  transpilePackages: ["uixy"],
+  transpilePackages: ["@igorao79/uivix"],
+  webpack: (config) => {
+    config.resolve.alias["@igorao79/uivix"] = path.resolve(
+      __dirname,
+      "../../packages/uixy/dist/index.mjs"
+    );
+    return config;
+  },
 };
 
 module.exports = nextConfig;
