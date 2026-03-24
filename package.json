@@ -4,5 +4,8 @@
   "workspaces": [
     "packages/*",
     "apps/*"
-  ]
+  ],
+  "scripts": {
+    "build": "cd packages/uixy && npm run build && cd ../../apps/docs && npm run build"
+  }
 }
