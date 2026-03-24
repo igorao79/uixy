@@ -1,5 +1,5 @@
 {
-  "installCommand": "npm install && cd packages/uixy && npm run build",
+  "installCommand": "npm install",
   "buildCommand": "cd apps/docs && npx next build",
   "outputDirectory": "apps/docs/.next",
   "framework": "nextjs"
