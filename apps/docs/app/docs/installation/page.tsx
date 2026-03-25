@@ -88,6 +88,34 @@ export default function InstallationPage() {
         </p>
       </div>
 
+      <h2 className="text-xl font-semibold mb-4">UIVIX MCP Server</h2>
+      <a
+        href="https://github.com/igorao79/uivixmcp"
+        target="_blank"
+        rel="noopener noreferrer"
+        className="group flex items-center gap-4 rounded-lg border border-violet-500/20 bg-violet-500/5 p-5 mb-12 transition-all hover:border-violet-500/40 hover:bg-violet-500/10"
+      >
+        <div className="w-10 h-10 rounded-lg bg-violet-500/15 flex items-center justify-center shrink-0">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.5} className="w-5 h-5 text-violet-400">
+            <path strokeLinecap="round" strokeLinejoin="round" d="M9.813 15.904L9 18.75l-.813-2.846a4.5 4.5 0 00-3.09-3.09L2.25 12l2.846-.813a4.5 4.5 0 003.09-3.09L9 5.25l.813 2.846a4.5 4.5 0 003.09 3.09L15.75 12l-2.846.813a4.5 4.5 0 00-3.09 3.09zM18.259 8.715L18 9.75l-.259-1.035a3.375 3.375 0 00-2.455-2.456L14.25 6l1.036-.259a3.375 3.375 0 002.455-2.456L18 2.25l.259 1.035a3.375 3.375 0 002.455 2.456L21.75 6l-1.036.259a3.375 3.375 0 00-2.455 2.456zM16.894 20.567L16.5 21.75l-.394-1.183a2.25 2.25 0 00-1.423-1.423L13.5 18.75l1.183-.394a2.25 2.25 0 001.423-1.423l.394-1.183.394 1.183a2.25 2.25 0 001.423 1.423l1.183.394-1.183.394a2.25 2.25 0 00-1.423 1.423z" />
+          </svg>
+        </div>
+        <div className="flex-1">
+          <div className="flex items-center gap-2">
+            <h3 className="text-base font-semibold text-zinc-100 group-hover:text-violet-400 transition-colors">
+              UIVIX MCP Server
+            </h3>
+            <span className="px-1.5 py-0.5 text-[10px] font-bold bg-violet-500 text-white rounded-full leading-none">NEW</span>
+          </div>
+          <p className="text-sm text-zinc-500 mt-0.5">
+            We recommend installing our MCP server for Claude Code / Cursor — get AI-powered access to all UIVIX component docs.
+          </p>
+        </div>
+        <svg viewBox="0 0 20 20" fill="currentColor" className="w-5 h-5 text-zinc-600 group-hover:text-violet-400 transition-colors shrink-0">
+          <path fillRule="evenodd" d="M5.22 14.78a.75.75 0 001.06 0l7.22-7.22v5.69a.75.75 0 001.5 0v-7.5a.75.75 0 00-.75-.75h-7.5a.75.75 0 000 1.5h5.69l-7.22 7.22a.75.75 0 000 1.06z" clipRule="evenodd" />
+        </svg>
+      </a>
+
       <h2 className="text-xl font-semibold mb-6">Explore Components</h2>
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
         {componentCategories.map((category) => (
